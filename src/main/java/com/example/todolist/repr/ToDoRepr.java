@@ -1,12 +1,13 @@
 package com.example.todolist.repr;
 
+import com.example.todolist.persist.entity.ToDo;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class TodoRepr {
+public class ToDoRepr {
 
     private long id;
 
@@ -19,7 +20,14 @@ public class TodoRepr {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate targetDate;
 
-    public TodoRepr() {
+    public ToDoRepr() {
+    }
+
+    public ToDoRepr(ToDo toDo) {
+        this.id = toDo.getId();
+        this.description = toDo.getDescription();
+        this.username = toDo.getUser().getUsername();
+        this.targetDate = toDo.getTargetDate();
     }
 
     public long getId() {
